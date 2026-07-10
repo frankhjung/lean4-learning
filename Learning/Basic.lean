@@ -34,6 +34,10 @@ def tonyAge : Age := 25
 /-- Example age used in tests/demonstrations. -/
 def lisaAge : Age := 15
 
+/-! Check adult status: -/
+example : isAdult tonyAge = true := rfl
+example : isAdult lisaAge = false := rfl
+
 /-- Safe Head: should be the same as `List.head`, but with a proof of
     non-emptiness. -/
 def safeHead {α : Type} (xs : { l : List α // l ≠ []}) : α :=
@@ -42,5 +46,5 @@ def safeHead {α : Type} (xs : { l : List α // l ≠ []}) : α :=
   | ⟨x :: _, _⟩ => x
 
 /-! Example: Safe head: -/
-example : safeHead ⟨['a', 'b', 'c'], by decide⟩ = 'a' :=
-  rfl
+example : safeHead ⟨['a', 'b', 'c'], by decide⟩ = 'a' := rfl
+
