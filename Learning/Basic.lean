@@ -6,8 +6,8 @@ arithmetic, type aliases/abbreviations, and simple boolean predicates.
 -/
 
 /-- Return a string that appends either `42` or `0` to `name` depending on
-  `value`. This demonstrates a conditional expression and `toString`
-  conversion. -/
+`value`. This demonstrates a conditional expression and `toString`
+conversion. -/
 def hitchHiker (name : String) (value : Int) : String :=
   String.append name (toString (if value > 2 then 42 else 0))
 
@@ -21,7 +21,7 @@ def maximum (n : Nat) (k : Nat) : Nat := if n < k then k else n
 def Name : Type := String
 
 /-- An example `Name` value used in demonstrations. -/
-def name: Name := "Alice"
+def name : Name := "Alice"
 
 /-- `Age` is a type abbreviation for `Nat` used to make intent clearer. -/
 abbrev Age : Type := Nat
@@ -38,8 +38,8 @@ def lisaAge : Age := 15
 example : isAdult tonyAge = true := rfl
 example : isAdult lisaAge = false := rfl
 
-/-- Safe Head: should be the same as `List.head`, but with a proof of
-    non-emptiness. -/
+/-- Safe head: equivalent to `List.head`, but requires a proof of
+non-emptiness. -/
 def safeHead {α : Type} (xs : { l : List α // l ≠ []}) : α :=
   match xs with
   | ⟨[], h⟩ => False.elim (h rfl)
