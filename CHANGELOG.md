@@ -17,9 +17,16 @@ All notable changes to the `learning` Lean project are documented in this file.
     including the new `Learning/All.lean` module.
   - Added links for the Lean Language Guide and licence references.
   - Filled in the missing `lean --version` command in the README.
+  - Updated `README.md` to reflect the updated executable showcase
+    behaviour and list the correct test files in the workspace.
 
 ### Changed
 
+- **Executable:** Updated the `learning` executable entrypoint to run
+  a showcase demonstrating the `Learning.Basic`, `Learning.HelloWorld`,
+  and `Learning.Structure` modules. The hello world greeting now
+  accepts an optional name argument, defaulting to `"World"` if
+  omitted.
 - **Project Structure:** Renamed `Main.lean` to `Learning.lean` as the
   entry point for the `learning` executable, following the idiomatic
   Lean 4 convention of naming the executable root after the package.

@@ -31,7 +31,8 @@ Then you should be able to build and run the project:
 make build
 # or: lake build
 
-lake exe learning <name>
+# Run the showcase (argument is optional, defaults to "World"):
+lake exe learning [name]
 # e.g. lake exe learning "Frank Jung"
 ```
 
@@ -158,10 +159,12 @@ version `v4.31.0`:
   - `All.lean`: Convenience re-export of all library modules.
   - `Basic.lean`: Basic concepts — conditionals, arithmetic, types.
   - `HelloWorld.lean`: Greeting utilities used by the executable.
-  - `Irrational.lean`: Proof of the irrationality of the square root of 2.
   - `Structure.lean`: A 2D `Point` structure and helpers.
 - `Test.lean`: The test runner entrypoint that executes the test suite.
-- `Test/`: Directory containing tests corresponding to each lesson.
+- `Test/`: Directory containing tests corresponding to each lesson:
+  - `Basic.lean`: Unit tests for the basic concepts module.
+  - `HelloWorld.lean`: Unit tests for the hello world module.
+  - `Structure.lean`: Unit tests for the structure module.
   - `Util.lean`: Test utilities including assertion helpers.
 - `lakefile.toml`: Package build configuration for Lake.
 
