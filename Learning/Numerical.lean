@@ -1,7 +1,4 @@
-import Plausible
 import Batteries
-
-open Plausible
 
 namespace Learning.Numerical
 
@@ -91,9 +88,7 @@ inductive Pos : Type where
   | one : Pos
   /-- The successor case for positive numbers. -/
   | succ : Pos → Pos
-deriving BEq, Repr, Arbitrary, Shrinkable
-
-attribute [nolint docBlame] Learning.Numerical.instArbitraryPos.arbitrary Learning.Numerical.instArbitraryPos.arbitrary.aux_arb
+deriving BEq, Repr
 
 /-- Convert a natural number to a positive number, treating `0` as `Pos.one`. -/
 def Pos.ofNat : Nat → Pos

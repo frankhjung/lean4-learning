@@ -15,7 +15,7 @@ curl https://raw.githubusercontent.com/leanprover/elan/master/toolchain.sh | sh
 ```
 
 Alternatively, follow the instructions on the
-[Lean installation page][lean-installation].
+[Lean installation][lean-installation] page.
 
 ## First Steps
 
@@ -126,8 +126,7 @@ version `v4.31.0`:
 
 1. **Add the requirement to [lakefile.toml][lakefile-link]**:
    Append a new `[[require]]` block. Pin the version to match the
-   toolchain (e.g. `version = "git#v4.31.0"` or
-   `rev = "v4.31.0"`):
+   toolchain (e.g. `version = "git#v4.31.0"` or `rev = "v4.31.0"`):
 
    ```toml
    [[require]]
@@ -159,11 +158,14 @@ version `v4.31.0`:
   - `All.lean`: Convenience re-export of all library modules.
   - `Basic.lean`: Basic concepts — conditionals, arithmetic, types.
   - `HelloWorld.lean`: Greeting utilities used by the executable.
+  - `Numerical.lean`: Numerical basics — linear inequalities, Peano numbers.
   - `Structure.lean`: A 2D `Point` structure and helpers.
 - `Test.lean`: The test runner entrypoint that executes the test suite.
+- `TestArbitrary.lean`: Test runner for arbitrary property-based testing.
 - `Test/`: Directory containing tests corresponding to each lesson:
   - `Basic.lean`: Unit tests for the basic concepts module.
   - `HelloWorld.lean`: Unit tests for the hello world module.
+  - `Numerical.lean`: Unit tests for the numerical module.
   - `Structure.lean`: Unit tests for the structure module.
   - `Util.lean`: Test utilities including assertion helpers.
 - `lakefile.toml`: Package build configuration for Lake.
@@ -273,8 +275,8 @@ The following GitHub Actions are used in this project:
   functional programming in Lean.
 - [Lean GitHub][lean-github] - The GitHub repository for Lean.
 - [Lean Homepage][lean-homepage] - The official homepage of Lean.
-- [Lean Language Guide][lean-language-guide] - A guide to the Lean programming
-  language.
+- [Lean Language Guide][lean-language-guide] - A guide to the Lean programming language.
+- [Mathematics in Lean][maths-in-lean] - Mathematics in Lean
 - [Notebook][lean-notebook] - A notebook interface for Lean.
 - [Package Reservoir][lean-reservoir] - The package registry for Lean.
 - [Verso][lean-verso] - Writing documentation with Lean.
@@ -296,4 +298,5 @@ This project is licensed under the
 [lean-reservoir]: https://reservoir.lean-lang.org/
 [lean-verso]: https://verso.lean-lang.org/
 [manifest-link]: lake-manifest.json
+[maths-in-lean]: https://leanprover-community.github.io/mathematics_in_lean/
 [toolchain-link]: lean-toolchain
