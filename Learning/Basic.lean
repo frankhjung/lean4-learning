@@ -50,7 +50,7 @@ def safeHead {α : Type} (xs : { l : List α // l ≠ []}) : α :=
 -- Example: Safe head
 example : safeHead ⟨['a', 'b', 'c'], by decide⟩ = 'a' := rfl
 
-/-- 
+/--
 ## Linear Inequalities
 
 The following integer inequalities have no non-negative solutions We use the
@@ -107,3 +107,69 @@ example (x₁ x₂ x₃ : Int) (_ : x₁ ≥ 0) (_ : x₂ ≥ 0) (_ : x₃ ≥ 0
     -2 * x₁ + x₂ - 4 * x₃ ≥ 3
     → 3 * x₁ - 2 * x₂ + 7 * x₃ ≥ -5
     → False := by omega
+
+/-!
+
+## Positive Numbers
+
+The following example shows how to create a class of positive numbers using an `inductive` type similar to Peano numbers.
+Notes:
+
+- the `+` operator is defined for `Nat`, but not for `Pos`.
+- the `OfNat` class is used to help define these positive numbers
+
+--/
+
+/-- Type Class: Positive numbers. -/
+inductive Pos : Type where
+  /-- The base case for positive numbers: one. -/
+  | one : Pos
+  /-- The successor case for positive numbers. -/
+  | succ : Pos → Pos
+deriving BEq
+
+/-- Convert a natural number to a positive number, treating `0` as `Pos.one`. -/
+def Pos.ofNat : Nat → Pos
+  | 0 => Pos.one
+  | 1 => Pos.one
+  | n + 2 => Pos.succ (Pos.ofNat (n + 1))
+
+/-- Convert a natural number to a positive number. -/
+instance : OfNat Pos (n + 1) where
+  ofNat := Pos.ofNat n
+
+/-- Convert a positive number to a natural number. -/
+def Pos.toNat : Pos → Nat
+  | Pos.one => 1                -- base case
+  | Pos.succ n => n.toNat + 1   -- inductive step
+
+/-- Class ToString: Convert a Pos to a string. -/
+instance : ToString Pos where
+  toString := toString ∘ Pos.toNat
+
+/-- Class Plus: Adds two numbers. -/
+class Plus (α : Type) where
+  /-- The addition operation for the `Plus` class. -/
+  plus : α → α → α
+
+/-- Instance Plus: Add two natutal numbers. -/
+instance : Plus Nat where
+  plus := Nat.add
+
+/-- Def Pos.add: Add two positive numbers. -/
+def Pos.add : Pos → Pos → Pos
+  | Pos.one, y => Pos.succ y -- base case
+  | Pos.succ x, y => Pos.succ (x.add y) -- inductive step
+
+/-- Multiplication for positive numbers. -/
+def Pos.mul : Pos → Pos → Pos
+  | Pos.one, x => x -- base case
+  | Pos.succ x, y => Pos.add (x.mul y) y -- inductive step, add y x times
+
+/-- Define (+) operator for Pos. -/
+instance : Add Pos where
+  add := Pos.add
+
+/-- Define (*) operator for Pos. -/
+instance : Mul Pos where
+  mul := Pos.mul

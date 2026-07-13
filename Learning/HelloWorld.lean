@@ -12,16 +12,3 @@ def name := "Lean 4"
     Returns a `String` of the form "Hello World, <name>!". -/
 def greet : String → String
   | name => s!"Hello World, {name}!"
-
-open String
-open Char
-
-#eval greet name
-
-#eval (greet name).splitOn " "
-
-#eval ((greet name).split Char.isWhitespace).toList
-
-#eval ((greet name).split isWhitespace).toList
-
-#eval (String.split (greet name) isWhitespace).toList
