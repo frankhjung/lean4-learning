@@ -1,5 +1,6 @@
-/-!
+namespace Learning.Basic
 
+/-!
 # Basics
 
 This file contains small example definitions used in the `learning` package's

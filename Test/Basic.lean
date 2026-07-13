@@ -3,6 +3,7 @@ import Test.Util
 
 namespace Test.Basic
 
+open Learning.Basic
 open Test.Util (assertEqual State mkState summary)
 
 /-- Run basic tests. -/

@@ -3,7 +3,9 @@ import Test.Util
 
 namespace Test.Numerical
 
+open Learning.Numerical
 open Test.Util (assertEqual State)
+
 
 /-- Run numerical tests. -/
 def runTests (st : IO.Ref State) : IO Unit := do
@@ -29,5 +31,30 @@ def runTests (st : IO.Ref State) : IO Unit := do
   let pn2 : { n : Nat // PosNat n } := ⟨2, by simp [PosNat]⟩
   assertEqual st (Pos.fromPosNat pn2) p2 "fromPosNat 2 == Pos.succ Pos.one"
   assertEqual st (Pos.toPosNat p2).val pn2.val "toPosNat 2 == 2"
+
+/-!
+## Property-Based Tests
+
+These use the `plausible` tactic to randomly test algebraic
+properties of `Pos`. A counterexample causes a compilation error.
+-/
+
+/-- Addition is commutative. -/
+example (a b : Pos) : (a + b).toNat = (b + a).toNat := by
+  plausible
+
+/-- Addition is associative. -/
+example (a b c : Pos) :
+    ((a + b) + c).toNat = (a + (b + c)).toNat := by
+  plausible
+
+/-- Multiplication is commutative. -/
+example (a b : Pos) : (a * b).toNat = (b * a).toNat := by
+  plausible
+
+/-- Multiplication distributes over addition. -/
+example (a b c : Pos) :
+    (a * (b + c)).toNat = (a * b + a * c).toNat := by
+  plausible
 
 end Test.Numerical

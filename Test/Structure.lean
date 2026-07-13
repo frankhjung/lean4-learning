@@ -1,7 +1,8 @@
 import Learning.Structure
 import Test.Util
 
-open Test.Util
+open Learning.Structure
+open Test.Util (assertEqual State mkState summary)
 
 /-- Make `Point` values printable. -/
 instance : ToString Point where

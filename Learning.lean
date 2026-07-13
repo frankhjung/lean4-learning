@@ -1,8 +1,12 @@
 import Learning.Basic
 import Learning.HelloWorld
 import Learning.Structure
+import Learning.Numerical
 
 open Learning.HelloWorld (greet)
+open Learning.Basic (hitchHiker add1 maximum isAdult tonyAge)
+open Learning.Structure (Point p1 p2 addPoints)
+open Learning.Numerical (Pos)
 
 /-- Showcase `Learning.Basic` module. -/
 def demoBasic : IO Unit := do
@@ -30,7 +34,7 @@ def main (args : List String) : IO Unit := do
   let name := match args with
     | x :: _ => x
     | []     => "World"
-  
+
   demoHelloWorld name
   IO.println ""
   demoBasic

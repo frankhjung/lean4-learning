@@ -1,13 +1,17 @@
-/-!
+import Plausible
+import Batteries
 
+open Plausible
+
+namespace Learning.Numerical
+
+/-!
 # Numerical Basics
 
 This file contains examples and definitions related to basic numerical systems:
-
 - Linear inequalities verification using `omega`.
 - Positive numbers defined as Peano-style numbers.
 - Positive numbers defined as subtypes.
-
 -/
 
 /--
@@ -87,7 +91,9 @@ inductive Pos : Type where
   | one : Pos
   /-- The successor case for positive numbers. -/
   | succ : Pos → Pos
-deriving BEq
+deriving BEq, Repr, Arbitrary, Shrinkable
+
+attribute [nolint docBlame] Learning.Numerical.instArbitraryPos.arbitrary Learning.Numerical.instArbitraryPos.arbitrary.aux_arb
 
 /-- Convert a natural number to a positive number, treating `0` as `Pos.one`. -/
 def Pos.ofNat : Nat → Pos

@@ -28,3 +28,8 @@ rev = "v4.31.0"      # match toolchain
 name = "batteries"
 scope = "leanprover-community"
 rev = "v4.31.0"                # match toolchain
+
+[[require]]
+name = "plausible"
+scope = "leanprover-community"
+rev = "v4.31.0"                # match toolchain

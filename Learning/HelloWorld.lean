@@ -1,9 +1,13 @@
 namespace Learning.HelloWorld
 
-/-! Small utilities for greeting examples.
+/-!
+# Hello World
+
+Small utilities for greeting examples.
 
 This module provides a simple example `name` constant and a `greet` function
-used by the `learning` executable and tests. -/
+used by the `learning` executable and tests.
+-/
 
 /-- An example default name used in greeting examples. -/
 def name := "Lean 4"

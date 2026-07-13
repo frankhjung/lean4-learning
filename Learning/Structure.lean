@@ -1,3 +1,5 @@
+namespace Learning.Structure
+
 /-! Small geometry utilities: a 2D `Point` structure and helpers.
 
 This file defines a simple `Point` structure with floating-point
