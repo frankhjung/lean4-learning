@@ -48,4 +48,15 @@ def runTests (st : IO.Ref State) : IO Unit := do
   assertEqual st (Pos.mul (Pos.ofNat 3) (Pos.ofNat 4)) (Pos.ofNat 12) "Pos.mul 3 4"
   assertEqual st ((Pos.ofNat 3) * (Pos.ofNat 4)) (Pos.ofNat 12) "Pos 3 * Pos 4"
 
+  -- Positive number equivalences
+  let p1 := Pos.one
+  let pn1 : { n : Nat // PosNat n } := ⟨1, by simp [PosNat]⟩
+  assertEqual st (Pos.fromPosNat pn1) p1 "fromPosNat 1 == Pos.one"
+  assertEqual st (Pos.toPosNat p1).val pn1.val "toPosNat Pos.one == 1"
+
+  let p2 := Pos.succ Pos.one
+  let pn2 : { n : Nat // PosNat n } := ⟨2, by simp [PosNat]⟩
+  assertEqual st (Pos.fromPosNat pn2) p2 "fromPosNat 2 == Pos.succ Pos.one"
+  assertEqual st (Pos.toPosNat p2).val pn2.val "toPosNat 2 == 2"
+
 end Test.Basic

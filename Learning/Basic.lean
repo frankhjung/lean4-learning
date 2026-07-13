@@ -110,7 +110,7 @@ example (x₁ x₂ x₃ : Int) (_ : x₁ ≥ 0) (_ : x₂ ≥ 0) (_ : x₃ ≥ 0
 
 /-!
 
-## Positive Numbers
+## Positive Numbers (Peano)
 
 The following example shows how to create a class of positive numbers using an `inductive` type similar to Peano numbers.
 Notes:
@@ -173,3 +173,22 @@ instance : Add Pos where
 /-- Define (*) operator for Pos. -/
 instance : Mul Pos where
   mul := Pos.mul
+
+/-!
+
+## Positive Numbers (subtype)
+
+Another way to define a type for positive integers is by subtyping:
+
+-/
+
+/-- Type Class: Positive numbers using subtype. -/
+def PosNat (n : Nat) : Prop := n > 0
+
+/-- Convert `Pos` to `PosNat` subtype. -/
+def Pos.toPosNat (p : Pos) : { n : Nat // PosNat n } :=
+  ⟨p.toNat, by induction p <;> simp [toNat, PosNat, *]⟩
+
+/-- Convert `PosNat` subtype to `Pos`. -/
+def Pos.fromPosNat (n : { n : Nat // PosNat n }) : Pos :=
+  Pos.ofNat n.val
