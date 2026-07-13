@@ -1,6 +1,7 @@
 import Test.Basic
 import Test.HelloWorld
 import Test.Structure
+import Test.Numerical
 import Test.Util
 
 open Test.Util (mkState summary)
@@ -11,6 +12,7 @@ def main : IO Unit := do
 
   let st ← mkState
   Test.Basic.runTests st
+  Test.Numerical.runTests st
   Test.HelloWorld.runTests st
   Test.Structure.runTests st
 
