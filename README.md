@@ -1,7 +1,7 @@
 # Learning Lean
 
-[Lean][lean-homepage] is an open-source programming language and proof assistant
-that enables correct, maintainable, and formally verified code.
+[Lean][lean-homepage] is an open-source programming language and proof
+assistant that enables correct, maintainable, and formally verified code.
 
 ## Installation
 
@@ -81,14 +81,16 @@ lean --version
 
 ```bash
 $ lean --version
-Lean (version 4.31.0, x86_64-unknown-linux-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)
+Lean (version 4.31.0, x86_64-unknown-linux-gnu,
+      commit 68218e876d2a38b1985b8590fff244a83c321783, Release)
 ```
 
-#### Example: lake version
+### Example: lake version
 
 ```bash
 $ lake --version
-Lean (version 4.31.0, x86_64-unknown-linux-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)
+Lean (version 4.31.0, x86_64-unknown-linux-gnu,
+      commit 68218e876d2a38b1985b8590fff244a83c321783, Release)
 ```
 
 ### Managing Dependencies
@@ -174,8 +176,8 @@ version `v4.31.0`:
 
 ### CI/CD Workflow
 
-This project uses GitHub Actions for continuous integration and deployment. The
-workflow is defined in the
+This project uses GitHub Actions for continuous integration and
+deployment. The workflow is defined in the
 [.github/workflows/lean_action_ci.yml](.github/workflows/lean_action_ci.yml)
 file. It builds, tests, and lints the project on every push.
 Pushes to the `main` branch also automatically generate and deploy the project
@@ -224,8 +226,7 @@ directory.
 ### Documentation
 
 The project documentation is automatically published to GitHub Pages and can be
-viewed at:
-[https://frankhjung.github.io/lean-learning/](https://frankhjung.github.io/lean-learning/)
+viewed at: <https://frankhjung.github.io/lean4-learning/>
 
 To generate the project documentation locally, run:
 
@@ -238,7 +239,7 @@ lake build Learning:docs
 ```
 
 Once generated, you can serve the documentation locally on
-[http://localhost:8000](http://localhost:8000) with:
+<http://localhost:8000> with:
 
 ```bash
 python3 -m http.server --directory docbuild/.lake/build/doc 8000
@@ -253,10 +254,6 @@ exo-open --launch www docbuild/.lake/build/doc/index.html
 # Google Chrome
 google-chrome docbuild/.lake/build/doc/index.html
 ```
-
-#### Example
-
-![Documentation Screenshot](docs/doc-screenshot.png)
 
 ## GitHub Actions
 
@@ -275,13 +272,14 @@ The following GitHub Actions are used in this project:
   functional programming in Lean.
 - [Lean GitHub][lean-github] - The GitHub repository for Lean.
 - [Lean Homepage][lean-homepage] - The official homepage of Lean.
-- [Lean Language Guide][lean-language-guide] - A guide to the Lean programming language.
+- [Lean Language Guide][lean-language-guide] - A guide to the Lean
+  programming language.
 - [Mathematics in Lean][maths-in-lean] - Mathematics in Lean
 - [Notebook][lean-notebook] - A notebook interface for Lean.
 - [Package Reservoir][lean-reservoir] - The package registry for Lean.
 - [Verso][lean-verso] - Writing documentation with Lean.
 
-## License
+## Licence
 
 This project is licensed under the
 [GNU General Public License Version 3](LICENSE).
