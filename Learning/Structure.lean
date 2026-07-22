@@ -29,3 +29,34 @@ def addPoints (p1 : Point) (p2 : Point) : Point :=
 def p1 : Point := { x := 3.0, y := 4.0 }
 /-- Example point used in tests and examples. -/
 def p2 : Point := { x := 1.0, y := 2.0 }
+
+/-- Non-negative floating point values. -/
+abbrev NonNegFloat := { f : Float // f ≥ 0 }
+
+/-- Point in positive quadrant extending `Point`. -/
+structure PositiveQuadrant extends Point where
+  /-- Proof that horizontal coordinate is non-negative. -/
+  hx : x ≥ 0
+  /-- Proof that vertical coordinate is non-negative. -/
+  hy : y ≥ 0
+
+instance : Repr PositiveQuadrant where
+  reprPrec p _prec :=
+    repr s!"PositiveQuadrant(\{x := {p.x}, y := {p.y}})"
+
+instance : BEq PositiveQuadrant where
+  beq p1 p2 := p1.toPoint == p2.toPoint
+
+/-- Non-negative horizontal coordinate accessor. -/
+def PositiveQuadrant.x' (p : PositiveQuadrant) : NonNegFloat :=
+  ⟨p.x, p.hx⟩
+
+/-- Non-negative vertical coordinate accessor. -/
+def PositiveQuadrant.y' (p : PositiveQuadrant) : NonNegFloat :=
+  ⟨p.y, p.hy⟩
+
+/-- Construct a `PositiveQuadrant` from coordinates and proofs of non-negativity. -/
+def PositiveQuadrant.mk' (x y : Float)
+    (hx : x ≥ 0)
+    (hy : y ≥ 0) : PositiveQuadrant :=
+  ⟨{ x := x, y := y }, hx, hy⟩
