@@ -29,19 +29,19 @@ def runTests (st : IO.Ref State) : IO Unit := do
 
   match answers with
   | [sol] =>
-    let jenny := sol.find? (fun (n, _, _, _) => n == Name.Jenny)
-    let jackie := sol.find? (fun (n, _, _, _) => n == Name.Jackie)
-    let samantha := sol.find? (fun (n, _, _, _) => n == Name.Samantha)
-    let judy := sol.find? (fun (n, _, _, _) => n == Name.Judy)
+    let jenny := sol.find? (·.name == Name.Jenny)
+    let jackie := sol.find? (·.name == Name.Jackie)
+    let samantha := sol.find? (·.name == Name.Samantha)
+    let judy := sol.find? (·.name == Name.Judy)
 
     let jennyExpected :=
-      some (Name.Jenny, Drink.Tea, Meal.Toast, ToGo.Latte)
+      some ⟨Name.Jenny, Drink.Tea, Meal.Toast, ToGo.Latte⟩
     let jackieExpected :=
-      some (Name.Jackie, Drink.Orange, Meal.Pancakes, ToGo.Coffee)
+      some ⟨Name.Jackie, Drink.Orange, Meal.Pancakes, ToGo.Coffee⟩
     let samanthaExpected :=
-      some (Name.Samantha, Drink.Milk, Meal.Cereal, ToGo.Water)
+      some ⟨Name.Samantha, Drink.Milk, Meal.Cereal, ToGo.Water⟩
     let judyExpected :=
-      some (Name.Judy, Drink.Apple, Meal.Omelet, ToGo.Lemonade)
+      some ⟨Name.Judy, Drink.Apple, Meal.Omelet, ToGo.Lemonade⟩
 
     assertEqual st (jenny == jennyExpected) true "Jenny's assignment"
     assertEqual st (jackie == jackieExpected) true "Jackie's assignment"

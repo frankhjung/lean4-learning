@@ -16,6 +16,12 @@ def insertions (x : α) : List α → List (List α)
   | [] => [[x]]
   | y :: ys => (x :: y :: ys) :: (insertions x ys).map (y :: ·)
 
+@[simp] theorem length_insertions (x : α) (xs : List α) :
+    (insertions x xs).length = xs.length + 1 := by
+  induction xs with
+  | nil => rfl
+  | cons y ys ih => simp [insertions, ih]
+
 /--
 Return all permutations of a list `xs`.
 
