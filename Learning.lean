@@ -2,6 +2,7 @@ import Learning.Basic
 import Learning.HelloWorld
 import Learning.Structure
 import Learning.Numerical
+import Learning.LogicPuzzles.Breakfast
 
 open Learning.HelloWorld (greet)
 open Learning.Basic (hitchHiker add1 maximum isAdult tonyAge)
@@ -32,6 +33,11 @@ def demoStructure : IO Unit := do
   let p4 := PositiveQuadrant.mk' 1.1 2.2 (by native_decide) (by native_decide)
   IO.println s!"PositiveQuadrant.mk' 1.1 2.2: {repr p4}"
 
+/-- Showcase `Learning.LogicPuzzles.Breakfast` module. -/
+def demoLogicPuzzle : IO Unit := do
+  IO.println "--- Learning.LogicPuzzles.Breakfast Demo ---"
+  Learning.LogicPuzzles.Breakfast.printSolution
+
 /-- Entrypoint for the `learning` executable. -/
 def main (args : List String) : IO Unit := do
   let name := match args with
@@ -43,3 +49,5 @@ def main (args : List String) : IO Unit := do
   demoBasic
   IO.println ""
   demoStructure
+  IO.println ""
+  demoLogicPuzzle

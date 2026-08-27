@@ -8,7 +8,7 @@ endif
 LAKE	:= LD_LIBRARY_PATH="$(LEAN_PREFIX)/lib" lake
 RM	:= rm -rf
 
-.PHONY: all default build test lint doc clean update help exe
+.PHONY: all default build test lint doc clean update help exe puzzle
 
 default: build lint test ## Default goal: build, test and lint the project
 
@@ -29,7 +29,7 @@ build: ## Build the project using Lake
 
 lint: ## Run the linter
 	@$(LAKE) check-lint
-	@$(LAKE) lint --lint-all
+	@$(LAKE) lint
 
 test: ## Run the tests using Lake
 	@$(LAKE) check-test
@@ -37,6 +37,9 @@ test: ## Run the tests using Lake
 
 exe: ## Run the `learning` executable with a sample name
 	@$(LAKE) exe learning "Frank Jung"
+
+puzzle: ## Run the logic puzzle solver
+	@$(LAKE) exe learning
 
 doc: ## Generate documentation using Lake
 	@$(CD) docbuild && \

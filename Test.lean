@@ -3,6 +3,7 @@ import Test.HelloWorld
 import Test.Structure
 import Test.Numerical
 import Test.Util
+import Test.LogicPuzzles
 
 open Test.Util (mkState summary)
 
@@ -15,6 +16,7 @@ def main : IO Unit := do
   Test.Numerical.runTests st
   Test.HelloWorld.runTests st
   Test.Structure.runTests st
+  Test.LogicPuzzles.runTests st
 
   summary st
   let s ← st.get
