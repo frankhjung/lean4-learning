@@ -37,40 +37,44 @@ inductive Meal | Toast | Omelet | Pancakes | Cereal
 inductive ToGo | Lemonade | Water | Coffee | Latte
   deriving BEq, DecidableEq, Repr, Inhabited
 
-/-- Convert Name to String. -/
+/-- Convert `Name` values to strings for tables and test output. -/
 def Name.toString : Name → String
   | Jenny    => "Jenny"
   | Jackie   => "Jackie"
   | Samantha => "Samantha"
   | Judy     => "Judy"
 
+/-- String instance for friend names. -/
 instance : ToString Name := ⟨Name.toString⟩
 
-/-- Convert Drink to String. -/
+/-- Convert `Drink` values to strings for tables and test output. -/
 def Drink.toString : Drink → String
   | Orange => "Orange"
   | Apple  => "Apple"
   | Tea    => "Tea"
   | Milk   => "Milk"
 
+/-- String instance for breakfast drinks. -/
 instance : ToString Drink := ⟨Drink.toString⟩
 
-/-- Convert Meal to String. -/
+/-- Convert `Meal` values to strings for tables and test output. -/
 def Meal.toString : Meal → String
   | Toast    => "Toast"
   | Omelet   => "Omelet"
   | Pancakes => "Pancakes"
   | Cereal   => "Cereal"
 
+/-- String instance for breakfast meals. -/
 instance : ToString Meal := ⟨Meal.toString⟩
 
-/-- Convert ToGo to String. -/
+/-- Convert `ToGo` values to strings for tables and test output. -/
 def ToGo.toString : ToGo → String
   | Lemonade => "Lemonade"
   | Water    => "Water"
   | Coffee   => "Coffee"
   | Latte    => "Latte"
 
+/-- String instance for to-go drinks. -/
 instance : ToString ToGo := ⟨ToGo.toString⟩
 
 /-- A single person's assignment: Name, Drink, Meal, ToGo. -/
@@ -165,7 +169,7 @@ def clues : List (List Assignment → Bool) :=
 def isValid (sol : List Assignment) : Bool :=
   clues.all (· sol)
 
-/-- Returns all valid solutions. Expected to yield exactly 1. -/
+/-- Returns all valid solutions. The unit tests check that the result is unique. -/
 def answers : List (List Assignment) :=
   candidates.filter isValid
 
@@ -180,10 +184,6 @@ def formatAssignment (a : Assignment) : String :=
   let ms := padRight (toString a.meal) 8
   let ts := padRight (toString a.toGo) 8
   s!"| {ns} | {ds} | {ms} | {ts} |"
-
-/-- Formal compile-time proof that the puzzle has a unique solution. -/
-theorem answers_length_eq_one : answers.length = 1 := by
-  native_decide
 
 /-- Print the puzzle solution as a text table. -/
 def printSolution : IO Unit := do

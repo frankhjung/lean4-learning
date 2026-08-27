@@ -29,16 +29,16 @@ If any tag is missing, halt and find the correct revision.
 
 ## Commit 1 — Toolchain Upgrade (v4.31.0 → v4.32.0)
 
-### [MODIFY] [lean-toolchain](file:///home/frank/dev/lean4/learning/lean-toolchain)
+### [MODIFY] [lean-toolchain](../lean-toolchain)
 
 - Bump from `leanprover/lean4:v4.31.0` to
   `leanprover/lean4:v4.32.0`.
 
-### [MODIFY] [docbuild/lean-toolchain](file:///home/frank/dev/lean4/learning/docbuild/lean-toolchain)
+### [MODIFY] [docbuild/lean-toolchain](../docbuild/lean-toolchain)
 
 - Bump to `leanprover/lean4:v4.32.0`.
 
-### [MODIFY] [lakefile.toml](file:///home/frank/dev/lean4/learning/lakefile.toml)
+### [MODIFY] [lakefile.toml](../lakefile.toml)
 
 - Update `rev` for `doc-gen4`, `batteries`, and `plausible` to
   `v4.32.0`.
@@ -52,7 +52,7 @@ If any tag is missing, halt and find the correct revision.
 
 ### Module Hierarchy
 
-#### [NEW] [Perm.lean](file:///home/frank/dev/lean4/learning/Learning/LogicPuzzles/Perm.lean)
+#### [NEW] [Perm.lean](,,/Learning/LogicPuzzles/Perm.lean)
 
 Reusable combinatorial helpers in
 `namespace Learning.LogicPuzzles.Perm`:
@@ -66,7 +66,7 @@ Reusable combinatorial helpers in
 All functions must be **total** (no `partial`, no `sorry`).
 Docstrings wrapped at 80 columns.
 
-#### [NEW] [Breakfast.lean](file:///home/frank/dev/lean4/learning/Learning/LogicPuzzles/Breakfast.lean)
+#### [NEW] [Breakfast.lean](../Learning/LogicPuzzles/Breakfast.lean)
 
 Port the Haskell puzzle into
 `namespace Learning.LogicPuzzles.Breakfast`.
@@ -123,7 +123,6 @@ def answers : List (List Assignment) := …
 **Verification** — lightweight:
 
 - `#eval answers.length` sanity check (expect `1`).
-- No kernel proof / `native_decide` theorem.
 - Correctness validated by unit tests.
 
 **Module docstring** includes reference to:
