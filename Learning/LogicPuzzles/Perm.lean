@@ -1,3 +1,9 @@
+/-!
+# Permutation Combinators
+
+Total, structurally recursive list permutation helpers
+and multi-list zipping utilities.
+-/
 namespace Learning.LogicPuzzles.Perm
 
 /--

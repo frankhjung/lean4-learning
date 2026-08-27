@@ -139,7 +139,7 @@ def isValid (sol : List Assignment) : Bool :=
 def answers : List (List Assignment) :=
   candidates.filter isValid
 
-/-- Pad a string on the right with spaces to a given length -/
+/-- Pad a string on the right with spaces to a given length. -/
 def padRight (s : String) (len : Nat) : String :=
   if s.length >= len then s else s ++ String.ofList (List.replicate (len - s.length) ' ')
 
