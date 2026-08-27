@@ -27,17 +27,27 @@ def runTests (st : IO.Ref State) : IO Unit := do
   -- Unique solution
   assertEqual st answers.length 1 "puzzle has exactly 1 solution"
 
-  if answers.length == 1 then
-    let sol := answers.head!
-    
+  match answers with
+  | [sol] =>
     let jenny := sol.find? (fun (n, _, _, _) => n == Name.Jenny)
     let jackie := sol.find? (fun (n, _, _, _) => n == Name.Jackie)
     let samantha := sol.find? (fun (n, _, _, _) => n == Name.Samantha)
     let judy := sol.find? (fun (n, _, _, _) => n == Name.Judy)
 
-    assertEqual st (jenny == some (Name.Jenny, Drink.Tea, Meal.Toast, ToGo.Latte)) true "Jenny's assignment"
-    assertEqual st (jackie == some (Name.Jackie, Drink.Orange, Meal.Pancakes, ToGo.Coffee)) true "Jackie's assignment"
-    assertEqual st (samantha == some (Name.Samantha, Drink.Milk, Meal.Cereal, ToGo.Water)) true "Samantha's assignment"
-    assertEqual st (judy == some (Name.Judy, Drink.Apple, Meal.Omelet, ToGo.Lemonade)) true "Judy's assignment"
+    let jennyExpected :=
+      some (Name.Jenny, Drink.Tea, Meal.Toast, ToGo.Latte)
+    let jackieExpected :=
+      some (Name.Jackie, Drink.Orange, Meal.Pancakes, ToGo.Coffee)
+    let samanthaExpected :=
+      some (Name.Samantha, Drink.Milk, Meal.Cereal, ToGo.Water)
+    let judyExpected :=
+      some (Name.Judy, Drink.Apple, Meal.Omelet, ToGo.Lemonade)
+
+    assertEqual st (jenny == jennyExpected) true "Jenny's assignment"
+    assertEqual st (jackie == jackieExpected) true "Jackie's assignment"
+    assertEqual st (samantha == samanthaExpected) true "Samantha's assignment"
+    assertEqual st (judy == judyExpected) true "Judy's assignment"
+  | _ =>
+    IO.println "[FAIL] Expected exactly one solution"
 
 end Test.LogicPuzzles

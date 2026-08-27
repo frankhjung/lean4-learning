@@ -154,10 +154,13 @@ def formatAssignment (a : Assignment) : String :=
 
 /-- Print the puzzle solution as a text table. -/
 def printSolution : IO Unit := do
-  let sol := answers.head!
-  IO.println "| Name     | Drink    | Meal     | To Go    |"
-  IO.println "|----------|----------|----------|----------|"
-  for a in sol do
-    IO.println (formatAssignment a)
+  match answers with
+  | sol :: _ =>
+    IO.println "| Name     | Drink    | Meal     | To Go    |"
+    IO.println "|----------|----------|----------|----------|"
+    for a in sol do
+      IO.println (formatAssignment a)
+  | [] =>
+    IO.println "No valid solution found."
 
 end Learning.LogicPuzzles.Breakfast
