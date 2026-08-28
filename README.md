@@ -1,7 +1,7 @@
 # Learning Lean
 
-[Lean][lean-homepage] is an open-source programming language and proof
-assistant that enables correct, maintainable, and formally verified code.
+[Lean][lean-homepage] is an open-source programming language and proof assistant
+that enables correct, maintainable, and formally verified code.
 
 ## Installation
 
@@ -63,14 +63,14 @@ make doc
 
 ### Toolchain Versioning
 
-This project is pinned to Lean `v4.31.0` using the
-[lean-toolchain][toolchain-link] file. Elan automatically detects this
-file and uses the correct version for all builds and commands.
+This project is pinned to Lean `v4.32.0` using the
+[lean-toolchain][toolchain-link] file. Elan automatically detects this file and
+uses the correct version for all builds and commands.
 
-To explicitly set your default Lean version to `v4.31.0` using Elan, run:
+To explicitly set your default Lean version to `v4.32.0` using Elan, run:
 
 ```bash
-elan default leanprover/lean4:v4.31.0
+elan default leanprover/lean4:v4.32.0
 ```
 
 To check your current active Lean version, run:
@@ -81,77 +81,74 @@ lean --version
 
 ```bash
 $ lean --version
-Lean (version 4.31.0, x86_64-unknown-linux-gnu,
-      commit 68218e876d2a38b1985b8590fff244a83c321783, Release)
+Lean (version 4.32.0, x86_64-unknown-linux-gnu,
+      commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
 ```
 
 ### Example: lake version
 
 ```bash
 $ lake --version
-Lean (version 4.31.0, x86_64-unknown-linux-gnu,
-      commit 68218e876d2a38b1985b8590fff244a83c321783, Release)
+Lean (version 4.32.0, x86_64-unknown-linux-gnu,
+      commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
 ```
 
 ### Managing Dependencies
 
-[lake-manifest.json][manifest-link] is the **lock file** for your
-dependency tree. Once it is generated, `lake build` uses the exact
-commits recorded there without re-fetching anything.
+[lake-manifest.json][manifest-link] is the **lock file** for your dependency
+tree. Once it is generated, `lake build` uses the exact commits recorded there
+without re-fetching anything.
 
-> **Warning**: Do **not** run `lake update` for routine builds.
-> It re-resolves all floating-ref transitive dependencies
-> (`main`, `master` branches) to their latest commits. Those
-> commits may require a newer Lean toolchain, and — when
-> `fixedToolchain: false` — Lake will silently overwrite
-> `lean-toolchain` with the newer version.
->
-> Only run `lake update` when you intentionally want to add
-> or upgrade a direct dependency. After doing so, always verify
-> the toolchain has not changed:
->
-> ```bash
-> cat lean-toolchain
-> # must still print: leanprover/lean4:v4.31.0
-> ```
->
+> **Warning**: Do **not** run `lake update` for routine builds. It re-resolves
+> all floating-ref transitive dependencies (`main`, `master` branches) to their
+> latest commits. Those commits may require a newer Lean toolchain, and — when
+> `fixedToolchain: false` — Lake will silently overwrite `lean-toolchain` with
+> the newer version. Only run `lake update` when you intentionally want to add
+> or upgrade a direct dependency. After doing so, always verify the toolchain
+> has not changed:
+
+```bash
+cat lean-toolchain # must still print: leanprover/lean4:v4.32.0
+```
+
 > If it changed, restore it and commit both files:
->
-> ```bash
-> echo "leanprover/lean4:v4.31.0" > lean-toolchain
-> git add lean-toolchain lake-manifest.json
-> git commit -m "chore: lock toolchain to v4.31.0"
-> ```
 
-To add a new dependency while remaining on the pinned Lean prover
-version `v4.31.0`:
+```bash
+echo "leanprover/lean4:v4.32.0" > lean-toolchain
+git add lean-toolchain lake-manifest.json
+git commit -m "chore: lock toolchain to v4.32.0"
+```
 
-1. **Add the requirement to [lakefile.toml][lakefile-link]**:
-   Append a new `[[require]]` block. Pin the version to match the
-   toolchain (e.g. `version = "git#v4.31.0"` or `rev = "v4.31.0"`):
+To add a new dependency while remaining on the pinned Lean prover version
+`v4.32.0`:
 
-   ```toml
-   [[require]]
-   name = "SomeLib"
-   scope = "leanprover-community"
-   version = "git#v4.31.0"
-   ```
+#### Add the requirement to [lakefile.toml][lakefile-link]
 
-2. **Resolve the new dependency**:
+Append a new `[[require]]` block. Pin the version to match the toolchain (e.g.
+`version = "git#v4.32.0"` or `rev = "v4.32.0"`):
 
-   ```bash
-   lake update
-   ```
+```toml
+[[require]]
+name = "SomeLib"
+scope = "leanprover-community"
+version = "git#v4.32.0"
+```
 
-   Then verify `lean-toolchain` is still `v4.31.0` (see warning
-   above) and restore it if necessary.
+#### Resolve the new dependency
 
-3. **Rebuild the project**:
+```bash
+lake update
+```
 
-   ```bash
-   make build
-   # or: lake build
-   ```
+Then verify `lean-toolchain` is still `v4.32.0` (see warning above) and restore
+it if necessary.
+
+#### Rebuild the project
+
+```bash
+make build
+# or: lake build
+```
 
 ### Project Structure
 
@@ -176,18 +173,18 @@ version `v4.31.0`:
 
 ### CI/CD Workflow
 
-This project uses GitHub Actions for continuous integration and
-deployment. The workflow is defined in the
+This project uses GitHub Actions for continuous integration and deployment. The
+workflow is defined in the
 [.github/workflows/lean_action_ci.yml](.github/workflows/lean_action_ci.yml)
-file. It builds, tests, and lints the project on every push.
-Pushes to the `main` branch also automatically generate and deploy the project
-documentation to GitHub Pages.
+file. It builds, tests, and lints the project on every push. Pushes to the
+`main` branch also automatically generate and deploy the project documentation
+to GitHub Pages.
 
 ### Linting
 
 This project uses `lake lint` with the
-[Batteries](https://github.com/leanprover-community/batteries) linter.
-To run the linter locally (assuming dependencies are already resolved):
+[Batteries](https://github.com/leanprover-community/batteries) linter. To run
+the linter locally (assuming dependencies are already resolved):
 
 ```bash
 make lint
@@ -272,8 +269,8 @@ The following GitHub Actions are used in this project:
   functional programming in Lean.
 - [Lean GitHub][lean-github] - The GitHub repository for Lean.
 - [Lean Homepage][lean-homepage] - The official homepage of Lean.
-- [Lean Language Guide][lean-language-guide] - A guide to the Lean
-  programming language.
+- [Lean Language Guide][lean-language-guide] - A guide to the Lean programming
+  language.
 - [Mathematics in Lean][maths-in-lean] - Mathematics in Lean
 - [Notebook][lean-notebook] - A notebook interface for Lean.
 - [Package Reservoir][lean-reservoir] - The package registry for Lean.

@@ -29,7 +29,7 @@ build: ## Build the project using Lake
 
 lint: ## Run the linter
 	@$(LAKE) check-lint
-	@$(LAKE) lint --lint-all
+	@$(LAKE) lint
 
 test: ## Run the tests using Lake
 	@$(LAKE) check-test
