@@ -36,41 +36,41 @@ jobs:
           lake exe learning
           lake exe learning LEAN
 
-  deploy:
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
+  # deploy:
+  #   needs: build
+  #   if: github.ref == 'refs/heads/main'
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: read
+  #     pages: write
+  #     id-token: write
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 1
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+  #     - name: Setup Pages
+  #       uses: actions/configure-pages@v5
 
-      - name: Re-build the project
-        uses: leanprover/lean-action@v1
-        with:
-          test: false
-          lint: false
+  #     - name: Re-build the project
+  #       uses: leanprover/lean-action@v1
+  #       with:
+  #         test: false
+  #         lint: false
 
-      - name: Build documentation
-        run: |
-          cd docbuild
-          lake build Learning:docs
+  #     - name: Build documentation
+  #       run: |
+  #         cd docbuild
+  #         lake build Learning:docs
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docbuild/.lake/build/doc
+  #     - name: Upload Pages artifact
+  #       uses: actions/upload-pages-artifact@v3
+  #       with:
+  #         path: docbuild/.lake/build/doc
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v4
